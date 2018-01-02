@@ -1,13 +1,20 @@
-<?xml version="1.0"?>
-<doc>
-    <branch name="testing" hash="1cdf045c">
-        text,source
-    </branch>
-    <branch name="release01" hash="f200013e">
-        <sub-branch name="subrelease01">
-            xml,sgml
-        </sub-branch>
-    </branch>
-    <branch name="invalid">
-    </branch>
-</doc>
+<bookstore>
+    <book category="COOKING">
+        <title lang="en">Everyday Italian</title>
+        <author>Giada De Laurentiis</author>
+        <year>2005</year>
+        <price>30.00</price>
+    </book>
+    <book category="CHILDREN">
+        <title lang="en">Harry Potter</title>
+        <author>J K. Rowling</author>
+        <year>2005</year>
+        <price>29.99</price>
+    </book>
+    <book category="WEB">
+        <title lang="en">Learning XML</title>
+        <author>Erik T. Ray</author>
+        <year>2003</year>
+        <price>39.95</price>
+    </book>
+</bookstore>
