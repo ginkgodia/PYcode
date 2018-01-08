@@ -186,4 +186,56 @@ iter(tag=None)
 iterfind(match)
 parse(source, parser=None)：装载 xml 对象，source 可以为文件名或文件类型对象.
 write(file, encoding="us-ascii", xml_declaration=None, default_namespace=None,method="xml")　
+set 设置属性(node.set('k1','v1'))
 ```
+
+解析xml：
+    str： ET.xml(str)
+    文件：ET.parse("file.xml")
+修改原文件：
+首先用parse 装载xml对象到另一个对象ret
+利用这个对象的写方法ret.write将内存中的修改更新到文件。
+修改text 直接用变量替换
+删除属性： del node_node.attrib['name']
+增加属性： node_node.set("k1","v1")
+删除节点： root.remove(tag)
+
+创建节点：
+三种方法： 
+
+- 利用ET.Subelement直接指定父节点，进行创建
+- 利用makeelement不指定父节点创建节点，然后利用父节点.append()方法，将其添加到想要添加的节点下边。
+- 利用子节点也是Element对象的方法，利用对象来创建子节点 node = ET.Element("aa",{"k1":"v1"})
+
+创建xml文件：
+xml文件能保存的原因在于有tree对象，所以如果我们要创建一个不存在的xml文件，需要一个tree对象
+在内存中，tree对象需要找到要保存的根节点，这种情况在解析字符串类型的xml文件时，很有用
+
+```
+root = ET.Element("tag",attrib={"k1":"v1"})
+tree = ET.ElementTree(root)
+tree.write("new.xml")
+```
+
+一切皆对象：
+
+tree = ET.parse("doc.xml")
+<class 'xml.etree.ElementTree.ElementTree'>
+root = tree.getroot()
+<class 'xml.etree.ElementTree.Element'>
+
+tree 对象的方法：
+由 ET.ElementTree() 创建
+
+- getroot() 获取xml文件的根节点
+- parse() 将xml文件装载进对象
+- write() 将xml文件写入文件
+- iter()  迭代返回xml文件中所有的element对象
+...
+
+设定xml的保存格式：
+
+tree.write("new.xml",encoding="utf-8",short_empty_elements=True)
+short_empty_elements=True 表示自闭合 。即在没有text内容时，进行简化闭合/>
+
+xml 可以指定命名空间 通过导入新模块
